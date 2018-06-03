@@ -18,19 +18,34 @@ import butterknife.ButterKnife;
  * author：wisedeve
  * email：wisedeve@163.com
  */
-public abstract class BaseMvpActivity<P extends BasePresenter<V>,V extends BaseMvpView> extends AppCompatActivity implements BaseMvpView{
+public abstract class BaseActivity<P extends BasePresenter<V>,V extends BaseMvpView> extends AppCompatActivity implements BaseMvpView{
     private ProgressDialog progressDialog;
     protected P mPresenter;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         progressDialog = new ProgressDialog(this);//实例化progressDialog
+
+        //判断是否使用MVP模式
         mPresenter = createPresenter();
-        mPresenter.attachView((V)this);//presenter与view连接
+        if (mPresenter != null) {
+            mPresenter.attachView((V) this);//因为之后所有的子类都要实现对应的View接口
+        }
+
         //子类不再需要设置布局ID，也不再需要使用ButterKnife.bind()
         setContentView(provideContentViewId());
         ButterKnife.bind(this);
         excuteStatesBar();
+        initView();
+        initData();
+    }
+
+    public void initView() {
+
+    }
+
+    public void initData() {
+
     }
 
     //用于创建Presenter(由子类实现)

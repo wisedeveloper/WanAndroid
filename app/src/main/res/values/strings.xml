@@ -20,5 +20,8 @@
     <string name="ic_type">&#xe654; </string> <!--分类-->
     <string name="ic_user">&#xe652; </string> <!--用户-->
     <string name="ic_more">&#xe62b; </string>
-    <string name="logining">正在登陆...</string> <!--更多-->
+    <string name="logining">正在登陆...</string>
+    <string name="home">主页</string>
+    <string name="type">分类</string>
+    <string name="user">我的</string> <!--更多-->
 </resources>

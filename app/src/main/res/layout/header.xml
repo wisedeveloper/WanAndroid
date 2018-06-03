@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="@dimen/header_height"
+    android:background="@color/app_blue"
+    android:gravity="center_vertical">
+
+    <com.wisedeve.wanandroid.widget.IconFontTextView
+        android:id="@+id/icon_search"
+        style="@style/header_icon_style"
+        android:text="@string/ic_search"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20px"/>
+</RelativeLayout>

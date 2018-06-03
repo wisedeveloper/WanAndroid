@@ -1,6 +1,5 @@
 package com.wisedeve.wanandroid.ui.activity;
 
-import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.text.TextUtils;
@@ -10,13 +9,12 @@ import android.widget.Button;
 import com.wisedeve.wanandroid.R;
 import com.wisedeve.wanandroid.model.ResponseData;
 import com.wisedeve.wanandroid.model.UserBean;
-import com.wisedeve.wanandroid.ui.base.BaseMvpActivity;
+import com.wisedeve.wanandroid.ui.base.BaseActivity;
 import com.wisedeve.wanandroid.ui.presenter.LoginPresenter;
 import com.wisedeve.wanandroid.ui.view.LoginView;
 import com.wisedeve.wanandroid.widget.IconFontTextView;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -25,7 +23,7 @@ import butterknife.OnClick;
  * author：wisedeve
  * email：wisedeve@163.com
  */
-public class LoginActivity extends BaseMvpActivity<LoginPresenter,LoginView> implements LoginView{
+public class LoginActivity extends BaseActivity<LoginPresenter,LoginView> implements LoginView{
 
     @BindView(R.id.et_username)
     TextInputEditText etUsername;
