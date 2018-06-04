@@ -77,10 +77,6 @@ public abstract class BaseActivity<P extends BasePresenter<V>,V extends BaseMvpV
         T.showShort(this,msg);
     }
 
-    public void Toast(int msg){
-        T.showShort(this,msg);
-    }
-
     /**
      * 解决4.4设置状态栏颜色之后，布局内容嵌入状态栏位置问题
      */

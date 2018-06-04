@@ -1,14 +1,20 @@
 package com.wisedeve.wanandroid.ui.activity;
 
 
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.TextView;
 
 import com.wisedeve.wanandroid.R;
+import com.wisedeve.wanandroid.ui.adapter.FragPagerAdapter;
 import com.wisedeve.wanandroid.ui.base.BaseActivity;
 import com.wisedeve.wanandroid.ui.base.BasePresenter;
+import com.wisedeve.wanandroid.ui.fragment.HomeFragment;
 import com.wisedeve.wanandroid.widget.IconFontTextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -38,6 +44,8 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.tv_user)
     TextView tvUser;
 
+    private List<Fragment> mFragments = new ArrayList<>();
+
     @Override
     protected BasePresenter createPresenter() {
         return null;
@@ -51,6 +59,40 @@ public class MainActivity extends BaseActivity {
     @Override
     public void initView() {
         setTabColor(iconHome,tvHome);
+        mFragments.add(HomeFragment.newInstance());
+        mFragments.add(HomeFragment.newInstance());
+        mFragments.add(HomeFragment.newInstance());
+
+        viewPager.setAdapter(new FragPagerAdapter(getSupportFragmentManager(),mFragments));
+        viewPager.setCurrentItem(0, false);
+        viewPager.setOffscreenPageLimit(3);
+
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                switch (position) {
+                    case 0:
+                        setTabColor(iconHome, tvHome);
+                        break;
+                    case 1:
+                        setTabColor(iconType, tvType);
+                        break;
+                    case 2:
+                        setTabColor(iconUser, tvUser);
+                        break;
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     @OnClick({R.id.icon_search, R.id.ll_home, R.id.ll_type, R.id.ll_user})

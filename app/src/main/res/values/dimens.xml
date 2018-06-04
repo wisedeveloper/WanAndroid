@@ -3,4 +3,6 @@
     <dimen name="header_height">55dp</dimen>
     <dimen name="header_icon_width_height">55dp</dimen>
     <dimen name="header_icon_size">55px</dimen>
+
+    <dimen name="text_normal_size">16sp</dimen>
 </resources>
