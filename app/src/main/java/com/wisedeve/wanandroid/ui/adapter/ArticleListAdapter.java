@@ -2,11 +2,13 @@ package com.wisedeve.wanandroid.ui.adapter;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
+import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.wisedeve.wanandroid.R;
 import com.wisedeve.wanandroid.model.ArticleBean;
+import com.wisedeve.wanandroid.ui.activity.WebViewActivity;
 import com.wisedeve.wanandroid.widget.IconFontTextView;
 
 import java.util.List;
@@ -40,5 +42,11 @@ public class ArticleListAdapter extends BaseQuickAdapter<ArticleBean,BaseViewHol
             tvCollect.setText(mContext.getResources().getText(R.string.ic_collect_nor));
             tvCollect.setTextColor(mContext.getResources().getColor(R.color.tab_nor_color));
         }
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                WebViewActivity.startAction(mContext,item.getLink());
+            }
+        });
     }
 }
