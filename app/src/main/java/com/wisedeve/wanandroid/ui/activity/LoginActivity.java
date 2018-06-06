@@ -1,5 +1,7 @@
 package com.wisedeve.wanandroid.ui.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.text.TextUtils;
@@ -7,11 +9,13 @@ import android.view.View;
 import android.widget.Button;
 
 import com.wisedeve.wanandroid.R;
+import com.wisedeve.wanandroid.api.ServiceApi;
 import com.wisedeve.wanandroid.model.ResponseData;
 import com.wisedeve.wanandroid.model.UserBean;
 import com.wisedeve.wanandroid.ui.base.BaseActivity;
 import com.wisedeve.wanandroid.ui.presenter.LoginPresenter;
 import com.wisedeve.wanandroid.ui.view.LoginView;
+import com.wisedeve.wanandroid.util.SPUtils;
 import com.wisedeve.wanandroid.widget.IconFontTextView;
 
 import butterknife.BindView;
@@ -42,6 +46,10 @@ public class LoginActivity extends BaseActivity<LoginPresenter,LoginView> implem
 
     private String username;
     private String password;
+
+    public static void startAction(Context context){
+        context.startActivity(new Intent(context,LoginActivity.class));
+    }
 
     @Override
     protected LoginPresenter createPresenter() {
@@ -101,7 +109,10 @@ public class LoginActivity extends BaseActivity<LoginPresenter,LoginView> implem
         if (userBeanResponseData.getErrorCode() != 0) {
             Toast(userBeanResponseData.getErrorMsg());
         }else {
-            Toast(userBeanResponseData.getData().toString());
+            SPUtils.setBoolean(LoginActivity.this, ServiceApi.IS_LOGIN_KEY,true);
+            SPUtils.setString(LoginActivity.this,ServiceApi.USERNAME_KEY,username);
+            startActivity(new Intent(LoginActivity.this,MainActivity.class));
+            finish();
         }
 
     }

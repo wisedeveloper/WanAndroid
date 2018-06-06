@@ -1,6 +1,7 @@
 package com.wisedeve.wanandroid.ui.base;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 
+import com.wisedeve.wanandroid.R;
 import com.wisedeve.wanandroid.util.T;
 
 import butterknife.ButterKnife;
@@ -40,6 +42,18 @@ public abstract class BaseActivity<P extends BasePresenter<V>,V extends BaseMvpV
         initData();
     }
 
+    @Override
+    public void startActivity(Intent intent) {
+        super.startActivity(intent);
+        overridePendingTransition(R.anim.slide_right_in , R.anim.slide_left_out);
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.slide_left_in , R.anim.slide_right_out);
+    }
+
     public void initView() {
 
     }
@@ -69,8 +83,10 @@ public abstract class BaseActivity<P extends BasePresenter<V>,V extends BaseMvpV
     }
     @Override
     protected void onDestroy() {
-        mPresenter.detachView();//presenter与view断开连接
         super.onDestroy();
+        if (mPresenter != null) {
+            mPresenter.detachView();//presenter与view断开连接
+        }
     }
 
     public void Toast(String msg){

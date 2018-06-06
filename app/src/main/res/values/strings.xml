@@ -27,5 +27,10 @@
     <string name="share">分享</string>
     <string name="copy_link">复制链接</string>
     <string name="open_by_browser">使用系统浏览器打开</string>
-    <string name="copy_link_success">链接已复制</string> <!--更多-->
+    <string name="copy_link_success">链接已复制</string>
+    <string name="my_collect">我的收藏</string>
+    <string name="about">关于</string>
+    <string name="click_login">点击登录</string>
+    <string name="exit_login">退出登录</string>
+    <string name="no_login">未登录</string> <!--更多-->
 </resources>

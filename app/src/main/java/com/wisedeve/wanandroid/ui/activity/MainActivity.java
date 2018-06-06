@@ -11,6 +11,7 @@ import com.wisedeve.wanandroid.ui.adapter.FragPagerAdapter;
 import com.wisedeve.wanandroid.ui.base.BaseActivity;
 import com.wisedeve.wanandroid.ui.base.BasePresenter;
 import com.wisedeve.wanandroid.ui.fragment.HomeFragment;
+import com.wisedeve.wanandroid.ui.fragment.UserFragment;
 import com.wisedeve.wanandroid.widget.IconFontTextView;
 
 import java.util.ArrayList;
@@ -61,7 +62,7 @@ public class MainActivity extends BaseActivity {
         setTabColor(iconHome,tvHome);
         mFragments.add(HomeFragment.newInstance());
         mFragments.add(HomeFragment.newInstance());
-        mFragments.add(HomeFragment.newInstance());
+        mFragments.add(UserFragment.newInstance());
 
         viewPager.setAdapter(new FragPagerAdapter(getSupportFragmentManager(),mFragments));
         viewPager.setCurrentItem(0, false);
@@ -78,12 +79,15 @@ public class MainActivity extends BaseActivity {
                 switch (position) {
                     case 0:
                         setTabColor(iconHome, tvHome);
+                        iconSearch.setVisibility(View.VISIBLE);
                         break;
                     case 1:
                         setTabColor(iconType, tvType);
+                        iconSearch.setVisibility(View.VISIBLE);
                         break;
                     case 2:
                         setTabColor(iconUser, tvUser);
+                        iconSearch.setVisibility(View.GONE);
                         break;
                 }
             }
@@ -101,16 +105,13 @@ public class MainActivity extends BaseActivity {
             case R.id.icon_search:
                 break;
             case R.id.ll_home:
-                setTabColor(iconHome,tvHome);
-
+                viewPager.setCurrentItem(0);
                 break;
             case R.id.ll_type:
-                setTabColor(iconType,tvType);
-
+                viewPager.setCurrentItem(1);
                 break;
             case R.id.ll_user:
-                setTabColor(iconUser,tvUser);
-
+                viewPager.setCurrentItem(2);
                 break;
         }
     }

@@ -8,7 +8,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.wisedeve.wanandroid.R;
 
 /**
- * Description：
+ * Description：图片加载管理
  * Created time：18-6-4 下午2:15
  * author：wisedeve
  * email：wisedeve@163.com

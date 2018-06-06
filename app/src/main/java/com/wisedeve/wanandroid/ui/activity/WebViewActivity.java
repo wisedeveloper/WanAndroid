@@ -61,9 +61,16 @@ public class WebViewActivity extends BaseActivity<WebViewPresenter, CommonWebVie
 
     @Override
     public void initView() {
+        tvTitle.setVisibility(View.VISIBLE);
+        tvTitle.setText(R.string.loading);
         iconReturn.setVisibility(View.VISIBLE);
         iconSearch.setVisibility(View.VISIBLE);
         iconSearch.setText(R.string.ic_more);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         mUrl = getIntent().getStringExtra(WEB_URL);
         mPresenter.setWebView(webView,mUrl);
     }

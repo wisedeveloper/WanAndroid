@@ -5,4 +5,5 @@
 
     <dimen name="header_icon_size">28sp</dimen>
     <dimen name="text_normal_size">16sp</dimen>
+    <dimen name="text_title_size">20sp</dimen>
 </resources>

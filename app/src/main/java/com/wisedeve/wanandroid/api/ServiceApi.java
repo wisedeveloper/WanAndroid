@@ -24,6 +24,9 @@ import okhttp3.Response;
  */
 public class ServiceApi {
 
+    public static final String IS_LOGIN_KEY = "isLogin";
+    public static final String USERNAME_KEY = "userName";
+
     public static final String BASE_URL = "http://wanandroid.com/";
     public static final String loginUrl = BASE_URL + "user/login";
     public static final String registerUrl = BASE_URL + "user/register";

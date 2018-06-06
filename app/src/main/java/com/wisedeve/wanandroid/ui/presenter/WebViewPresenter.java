@@ -24,7 +24,7 @@ public class WebViewPresenter extends BasePresenter<CommonWebView>{
 
         WebSettings settings = webView.getSettings();
         settings.setJavaScriptEnabled(true);// 支持JS
-        settings.setBuiltInZoomControls(true);// 显示放大缩小按钮
+        settings.setBuiltInZoomControls(false);// 显示放大缩小按钮
         settings.setUseWideViewPort(true);// 支持双击放大缩小
         settings.setSupportZoom(true);
         settings.setJavaScriptCanOpenWindowsAutomatically(true);
