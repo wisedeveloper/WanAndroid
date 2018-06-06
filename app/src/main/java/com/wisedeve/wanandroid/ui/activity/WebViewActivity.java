@@ -138,7 +138,7 @@ public class WebViewActivity extends BaseActivity<WebViewPresenter, CommonWebVie
                 webView.goBack();
                 return true;
             } else {
-                finish();//退出程序
+                finish();
                 return true;
             }
         }

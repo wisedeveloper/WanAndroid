@@ -26,7 +26,6 @@ public abstract class BaseActivity<P extends BasePresenter<V>,V extends BaseMvpV
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        progressDialog = new ProgressDialog(this);//实例化progressDialog
 
         //判断是否使用MVP模式
         mPresenter = createPresenter();
@@ -71,6 +70,7 @@ public abstract class BaseActivity<P extends BasePresenter<V>,V extends BaseMvpV
 
     @Override
     public void showProgress(String msg) {
+        progressDialog = new ProgressDialog(this);//实例化progressDialog
         progressDialog.setMessage(msg);//设置进度条加载内容
         if (! progressDialog.isShowing())//如果进度条没有显示
             progressDialog.show();//显示进度条

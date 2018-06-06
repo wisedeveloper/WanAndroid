@@ -11,6 +11,7 @@ import com.wisedeve.wanandroid.model.ResponseData;
 import com.wisedeve.wanandroid.model.UserBean;
 
 import java.lang.reflect.Type;
+import java.text.MessageFormat;
 import java.util.List;
 
 import io.reactivex.Observable;
@@ -31,7 +32,10 @@ public class ServiceApi {
     public static final String loginUrl = BASE_URL + "user/login";
     public static final String registerUrl = BASE_URL + "user/register";
     public static final String bannerUrl = BASE_URL + "banner/json";
-    public static final String homeArticleUrl = BASE_URL + "article/list/0/json";
+    public static final String homeArticleUrl = BASE_URL + "article/list/%d/json";
+    public static final String collectUrl = BASE_URL + "lg/collect/%d/json";
+    public static final String unCollectUrl = BASE_URL + "lg/uncollect_originId/%d/json";
+    //public static final String unCollectUrl = BASE_URL + "lg/uncollect/{0}/json";
     private static Gson gson = new Gson();
 
     /**
@@ -76,6 +80,10 @@ public class ServiceApi {
                 .adapt(new ObservableBody<>());
     }
 
+    /**
+     * 获取banner数据
+     * @return
+     */
     public static Observable<ResponseData<List<BannerBean>>> getBannerData(){
         return OkGo.<ResponseData<List<BannerBean>>>get(bannerUrl)
                 .converter(new Converter<ResponseData<List<BannerBean>>>() {
@@ -89,13 +97,53 @@ public class ServiceApi {
                 .adapt(new ObservableBody<>());
     }
 
+    /**
+     * 获取首页文章列表
+     * @param page
+     * @return
+     */
     public static Observable<ResponseData<ArticleList>> getHomeArticleData(int page){
-        String url = BASE_URL + "article/list/"+ page +"/json";
-        return OkGo.<ResponseData<ArticleList>>get(url)
+        return OkGo.<ResponseData<ArticleList>>get(String.format(homeArticleUrl,page))
                 .converter(new Converter<ResponseData<ArticleList>>() {
                     @Override
                     public ResponseData<ArticleList> convertResponse(Response response) throws Throwable {
                         Type type = new TypeToken<ResponseData<ArticleList>>() {
+                        }.getType();
+                        return gson.fromJson(response.body().string(),type);
+                    }
+                })
+                .adapt(new ObservableBody<>());
+    }
+
+    /**
+     * 收藏站内文章
+     * @param id
+     * @return
+     */
+    public static Observable<ResponseData<String>> collectArticle(int id){
+        return OkGo.<ResponseData<String>>post(String.format(collectUrl,id))
+                .converter(new Converter<ResponseData<String>>() {
+                    @Override
+                    public ResponseData<String> convertResponse(Response response) throws Throwable {
+                        Type type = new TypeToken<ResponseData<String>>() {
+                        }.getType();
+                        return gson.fromJson(response.body().string(),type);
+                    }
+                })
+                .adapt(new ObservableBody<>());
+    }
+
+    /**
+     * 取消收藏
+     * @param id
+     * @return
+     */
+    public static Observable<ResponseData<String>> unCollectArticle(int id){
+        return OkGo.<ResponseData<String>>post(String.format(unCollectUrl,id))
+                .converter(new Converter<ResponseData<String>>() {
+                    @Override
+                    public ResponseData<String> convertResponse(Response response) throws Throwable {
+                        Type type = new TypeToken<ResponseData<String>>() {
                         }.getType();
                         return gson.fromJson(response.body().string(),type);
                     }
