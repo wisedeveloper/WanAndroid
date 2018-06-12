@@ -20,6 +20,7 @@ import io.reactivex.schedulers.Schedulers;
  * email：wisedeve@163.com
  */
 public class SearchPresenter extends BasePresenter<SearchView>{
+
     private int mCurrentPage;
 
     public void getHotKey(){
