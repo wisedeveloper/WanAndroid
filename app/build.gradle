@@ -44,5 +44,6 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
     implementation 'com.github.pinguo-zhouwei:CustomPopwindow:2.1.1'
+    implementation 'com.hyman:flowlayout-lib:1.1.2'
 
 }

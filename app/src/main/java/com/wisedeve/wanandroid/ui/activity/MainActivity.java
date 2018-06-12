@@ -103,6 +103,7 @@ public class MainActivity extends BaseActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.icon_search:
+                SearchActivity.startAction(this);
                 break;
             case R.id.ll_home:
                 viewPager.setCurrentItem(0);

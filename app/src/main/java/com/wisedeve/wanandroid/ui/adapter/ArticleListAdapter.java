@@ -2,6 +2,7 @@ package com.wisedeve.wanandroid.ui.adapter;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
+import android.text.Html;
 import android.view.View;
 import android.widget.TextView;
 
@@ -42,7 +43,7 @@ public class ArticleListAdapter extends BaseQuickAdapter<ArticleBean,BaseViewHol
     protected void convert(BaseViewHolder holder, ArticleBean item) {
         holder.setText(R.id.tv_author,item.getAuthor())
                 .setText(R.id.tv_time,item.getNiceDate())
-                .setText(R.id.tv_title,item.getTitle())
+                .setText(R.id.tv_title, Html.fromHtml(item.getTitle()))
                 .setText(R.id.tv_type,item.getChapterName());
         IconFontTextView tvCollect = holder.getView(R.id.icon_collect);
         if (item.isCollect()) {

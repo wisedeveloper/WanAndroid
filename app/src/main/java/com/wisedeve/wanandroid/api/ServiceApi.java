@@ -7,6 +7,7 @@ import com.lzy.okgo.convert.Converter;
 import com.lzy.okrx2.adapter.ObservableBody;
 import com.wisedeve.wanandroid.model.ArticleList;
 import com.wisedeve.wanandroid.model.BannerBean;
+import com.wisedeve.wanandroid.model.HotKeyBean;
 import com.wisedeve.wanandroid.model.ResponseData;
 import com.wisedeve.wanandroid.model.UserBean;
 
@@ -36,6 +37,9 @@ public class ServiceApi {
     public static final String collectUrl = BASE_URL + "lg/collect/%d/json";
     public static final String unCollectUrl = BASE_URL + "lg/uncollect_originId/%d/json";
     //public static final String unCollectUrl = BASE_URL + "lg/uncollect/{0}/json";
+    public static final String queryUrl = BASE_URL + "article/query/%d/json";
+    public static final String hotKeyUrl = BASE_URL + "hotkey/json";
+
     private static Gson gson = new Gson();
 
     /**
@@ -144,6 +148,43 @@ public class ServiceApi {
                     @Override
                     public ResponseData<String> convertResponse(Response response) throws Throwable {
                         Type type = new TypeToken<ResponseData<String>>() {
+                        }.getType();
+                        return gson.fromJson(response.body().string(),type);
+                    }
+                })
+                .adapt(new ObservableBody<>());
+    }
+
+    /**
+     * 搜索文章
+     * @param page
+     * @param key
+     * @return
+     */
+    public static Observable<ResponseData<ArticleList>> queryArticle(int page,String key){
+        return OkGo.<ResponseData<ArticleList>>post(String.format(queryUrl,page))
+                .params("k",key)
+                .converter(new Converter<ResponseData<ArticleList>>() {
+                    @Override
+                    public ResponseData<ArticleList> convertResponse(Response response) throws Throwable {
+                        Type type = new TypeToken<ResponseData<ArticleList>>() {
+                        }.getType();
+                        return gson.fromJson(response.body().string(),type);
+                    }
+                })
+                .adapt(new ObservableBody<>());
+    }
+
+    /**
+     * 获取搜索热词你
+     * @return
+     */
+    public static Observable<ResponseData<List<HotKeyBean>>> hotKey(){
+        return OkGo.<ResponseData<List<HotKeyBean>>>get(hotKeyUrl)
+                .converter(new Converter<ResponseData<List<HotKeyBean>>>() {
+                    @Override
+                    public ResponseData<List<HotKeyBean>> convertResponse(Response response) throws Throwable {
+                        Type type = new TypeToken<ResponseData<List<HotKeyBean>>>() {
                         }.getType();
                         return gson.fromJson(response.body().string(),type);
                     }

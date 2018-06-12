@@ -23,6 +23,36 @@
         android:maxLines="1"
         android:ellipsize="end"
         android:layout_centerInParent="true"/>
+    <RelativeLayout
+        android:id="@+id/rl_search"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_toRightOf="@+id/icon_return"
+        android:gravity="center_vertical"
+        android:layout_centerVertical="true"
+        android:visibility="gone"
+        android:background="@drawable/bg_round_frame_gray">
+        <EditText
+            android:id="@+id/et_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="50dp"
+            android:singleLine="true"
+            android:imeOptions="actionSearch"
+            android:textSize="@dimen/text_normal_size"
+            android:background="@color/transparent"
+            android:hint="@string/hint_search"/>
+        <com.wisedeve.wanandroid.widget.IconFontTextView
+            android:id="@+id/icon_clean_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:text="@string/ic_close"
+            android:visibility="gone"
+            android:textColor="@color/text1" />
+    </RelativeLayout>
     <com.wisedeve.wanandroid.widget.IconFontTextView
         android:id="@+id/icon_search"
         style="@style/header_icon_style"
