@@ -33,5 +33,6 @@
     <string name="click_login">点击登录</string>
     <string name="exit_login">退出登录</string>
     <string name="no_login">未登录</string>
-    <string name="hint_search">请输入关键字</string> <!--更多-->
+    <string name="hint_search">请输入关键字</string>
+    <string name="no_data">暂无数据!</string> <!--更多-->
 </resources>

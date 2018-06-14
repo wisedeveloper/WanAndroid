@@ -37,6 +37,7 @@ public class ArticleBean implements Serializable{
      * zan : 0
      */
 
+    private int originId;
     private String apkLink;
     private String author;
     private int chapterId;
@@ -60,6 +61,14 @@ public class ArticleBean implements Serializable{
     private int visible;
     private int zan;
     private List<?> tags;
+
+    public int getOriginId() {
+        return originId;
+    }
+
+    public void setOriginId(int originId) {
+        this.originId = originId;
+    }
 
     public String getApkLink() {
         return apkLink;

@@ -1,6 +1,7 @@
 package com.wisedeve.wanandroid.ui.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,6 +16,7 @@ import com.wisedeve.wanandroid.R;
 import com.wisedeve.wanandroid.model.ArticleList;
 import com.wisedeve.wanandroid.model.BannerBean;
 import com.wisedeve.wanandroid.model.ResponseData;
+import com.wisedeve.wanandroid.ui.activity.WebViewActivity;
 import com.wisedeve.wanandroid.ui.adapter.ArticleListAdapter;
 import com.wisedeve.wanandroid.ui.base.BaseFragment;
 import com.wisedeve.wanandroid.ui.base.BasePresenter;
@@ -63,7 +65,7 @@ public class HomeFragment extends BaseFragment<HomePresenter,HomeView> implement
     @Override
     public void initView(View rootView) {
         recycleHome.setLayoutManager(new LinearLayoutManager(getContext()));
-        mAdapter = new ArticleListAdapter(getContext(),null);
+        mAdapter = new ArticleListAdapter(getContext(),null,0);
         recycleHome.setAdapter(mAdapter);
 
         swipeRefresh.setOnRefreshListener(this);
@@ -73,6 +75,7 @@ public class HomeFragment extends BaseFragment<HomePresenter,HomeView> implement
         bgaBanner = view.findViewById(R.id.banner);
         mAdapter.addHeaderView(view);
         onRefresh();
+
     }
 
     @Override
@@ -90,12 +93,20 @@ public class HomeFragment extends BaseFragment<HomePresenter,HomeView> implement
                 ImageLoaderManager.LoadImage(getContext(), model.getImagePath(), imageView);
             }
         });
+        bgaBanner.setDelegate(new BGABanner.Delegate() {
+            @Override
+            public void onBannerItemClick(BGABanner banner, View itemView, @Nullable Object model, int position) {
+                WebViewActivity.startAction(getActivity(),((BannerBean)model).getUrl());
+            }
+        });
     }
 
     @Override
     public void getRefreshDataSuccess(ResponseData<ArticleList> acticlrResponseData) {
         if (acticlrResponseData.getData().getDatas().size() != 0) {
             mAdapter.setNewData(acticlrResponseData.getData().getDatas());
+        }else {
+            Toast(getResources().getString(R.string.no_data));
         }
     }
 

@@ -77,7 +77,7 @@ public class SearchActivity extends BaseActivity<SearchPresenter, SearchView> im
         mPresenter.getHotKey();
 
         recycleSearch.setLayoutManager(new LinearLayoutManager(this));
-        mAdapter = new ArticleListAdapter(this,null);
+        mAdapter = new ArticleListAdapter(this,null,0);
         recycleSearch.setAdapter(mAdapter);
         mAdapter.setOnLoadMoreListener(this,recycleSearch);
         etSearch.addTextChangedListener(new TextWatcher() {

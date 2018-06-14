@@ -65,7 +65,7 @@ public class TypeFragment extends BaseFragment<TypePresenter, TypeView> implemen
     @Override
     public void initView(View rootView) {
         recycleType.setLayoutManager(new LinearLayoutManager(getContext()));
-        mAdapter = new ArticleListAdapter(getContext(),null);
+        mAdapter = new ArticleListAdapter(getContext(),null,0);
         mAdapter.setOnLoadMoreListener(this,recycleType);
         recycleType.setAdapter(mAdapter);
         mPresenter.getTagData();

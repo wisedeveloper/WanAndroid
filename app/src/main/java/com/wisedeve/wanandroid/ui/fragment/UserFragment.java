@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.wisedeve.wanandroid.R;
 import com.wisedeve.wanandroid.api.ServiceApi;
+import com.wisedeve.wanandroid.ui.activity.CollectActivity;
 import com.wisedeve.wanandroid.ui.activity.LoginActivity;
 import com.wisedeve.wanandroid.ui.base.BaseFragment;
 import com.wisedeve.wanandroid.ui.base.BasePresenter;
@@ -65,6 +66,7 @@ public class UserFragment extends BaseFragment {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_collect:
+                CollectActivity.startAction(getActivity());
                 break;
             case R.id.btn_about:
                 break;
