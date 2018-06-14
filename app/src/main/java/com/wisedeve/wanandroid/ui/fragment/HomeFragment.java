@@ -94,7 +94,9 @@ public class HomeFragment extends BaseFragment<HomePresenter,HomeView> implement
 
     @Override
     public void getRefreshDataSuccess(ResponseData<ArticleList> acticlrResponseData) {
-        mAdapter.setNewData(acticlrResponseData.getData().getDatas());
+        if (acticlrResponseData.getData().getDatas().size() != 0) {
+            mAdapter.setNewData(acticlrResponseData.getData().getDatas());
+        }
     }
 
     @Override

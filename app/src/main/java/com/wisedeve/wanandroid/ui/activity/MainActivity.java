@@ -11,6 +11,7 @@ import com.wisedeve.wanandroid.ui.adapter.FragPagerAdapter;
 import com.wisedeve.wanandroid.ui.base.BaseActivity;
 import com.wisedeve.wanandroid.ui.base.BasePresenter;
 import com.wisedeve.wanandroid.ui.fragment.HomeFragment;
+import com.wisedeve.wanandroid.ui.fragment.TypeFragment;
 import com.wisedeve.wanandroid.ui.fragment.UserFragment;
 import com.wisedeve.wanandroid.widget.IconFontTextView;
 
@@ -61,7 +62,7 @@ public class MainActivity extends BaseActivity {
     public void initView() {
         setTabColor(iconHome,tvHome);
         mFragments.add(HomeFragment.newInstance());
-        mFragments.add(HomeFragment.newInstance());
+        mFragments.add(TypeFragment.newInstance());
         mFragments.add(UserFragment.newInstance());
 
         viewPager.setAdapter(new FragPagerAdapter(getSupportFragmentManager(),mFragments));

@@ -37,7 +37,7 @@ public class App extends Application {
         OkGo.getInstance()
                 .init(this)
                 .setOkHttpClient(builder.build()) //设置OkHttpClient，不设置将使用默认的
-                .setCacheMode(CacheMode.FIRST_CACHE_THEN_REQUEST)
+                .setCacheMode(CacheMode.REQUEST_FAILED_READ_CACHE)
                 .setCacheTime(CacheEntity.CACHE_NEVER_EXPIRE)
                 .setRetryCount(3);
 

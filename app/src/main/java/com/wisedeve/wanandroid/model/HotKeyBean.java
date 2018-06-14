@@ -1,12 +1,14 @@
 package com.wisedeve.wanandroid.model;
 
+import java.io.Serializable;
+
 /**
  * Description：
  * Created time：18-6-12 上午10:44
  * author：wisedeve
  * email：wisedeve@163.com
  */
-public class HotKeyBean {
+public class HotKeyBean implements Serializable {
 
     /**
      * id : 6

@@ -9,6 +9,7 @@ import com.wisedeve.wanandroid.model.ArticleList;
 import com.wisedeve.wanandroid.model.BannerBean;
 import com.wisedeve.wanandroid.model.HotKeyBean;
 import com.wisedeve.wanandroid.model.ResponseData;
+import com.wisedeve.wanandroid.model.TreeBean;
 import com.wisedeve.wanandroid.model.UserBean;
 
 import java.lang.reflect.Type;
@@ -30,15 +31,17 @@ public class ServiceApi {
     public static final String USERNAME_KEY = "userName";
 
     public static final String BASE_URL = "http://wanandroid.com/";
-    public static final String loginUrl = BASE_URL + "user/login";
-    public static final String registerUrl = BASE_URL + "user/register";
-    public static final String bannerUrl = BASE_URL + "banner/json";
-    public static final String homeArticleUrl = BASE_URL + "article/list/%d/json";
-    public static final String collectUrl = BASE_URL + "lg/collect/%d/json";
-    public static final String unCollectUrl = BASE_URL + "lg/uncollect_originId/%d/json";
+    public static final String loginUrl = BASE_URL + "user/login";//登录
+    public static final String registerUrl = BASE_URL + "user/register";//注册
+    public static final String bannerUrl = BASE_URL + "banner/json";//1.2 首页banner
+    public static final String homeArticleUrl = BASE_URL + "article/list/%d/json";//1.1 首页文章列表
+    public static final String collectUrl = BASE_URL + "lg/collect/%d/json";//6.2 收藏站内文章
+    public static final String unCollectUrl = BASE_URL + "lg/uncollect_originId/%d/json";//6.4 取消收藏
     //public static final String unCollectUrl = BASE_URL + "lg/uncollect/{0}/json";
-    public static final String queryUrl = BASE_URL + "article/query/%d/json";
-    public static final String hotKeyUrl = BASE_URL + "hotkey/json";
+    public static final String queryUrl = BASE_URL + "article/query/%d/json";//7.1 搜索
+    public static final String hotKeyUrl = BASE_URL + "hotkey/json";//1.4 搜索热词
+    public static final String treeUrl = BASE_URL + "tree/json";//2.1 体系数据
+    public static final String treeArticleUrl = BASE_URL + "article/list/%d/json?cid=%d";//2.2 知识体系下的文章
 
     private static Gson gson = new Gson();
 
@@ -185,6 +188,43 @@ public class ServiceApi {
                     @Override
                     public ResponseData<List<HotKeyBean>> convertResponse(Response response) throws Throwable {
                         Type type = new TypeToken<ResponseData<List<HotKeyBean>>>() {
+                        }.getType();
+                        return gson.fromJson(response.body().string(),type);
+                    }
+                })
+                .adapt(new ObservableBody<>());
+    }
+
+    /**
+     * 获取体系数据
+     * @return
+     */
+    public static Observable<ResponseData<List<TreeBean>>> tree(){
+        return OkGo.<ResponseData<List<TreeBean>>>get(treeUrl)
+                .converter(new Converter<ResponseData<List<TreeBean>>>() {
+                    @Override
+                    public ResponseData<List<TreeBean>> convertResponse(Response response) throws Throwable {
+                        Type type = new TypeToken<ResponseData<List<TreeBean>>>() {
+                        }.getType();
+                        return gson.fromJson(response.body().string(),type);
+                    }
+                })
+                .adapt(new ObservableBody<>());
+    }
+
+    /**
+     * 知识体系下的文章
+     * http://www.wanandroid.com/article/list/0/json?cid=60
+     * @param page
+     * @param cid
+     * @return
+     */
+    public static Observable<ResponseData<ArticleList>> treeArticle(int page,int cid){
+        return OkGo.<ResponseData<ArticleList>>get(String.format(treeArticleUrl,page,cid))
+                .converter(new Converter<ResponseData<ArticleList>>() {
+                    @Override
+                    public ResponseData<ArticleList> convertResponse(Response response) throws Throwable {
+                        Type type = new TypeToken<ResponseData<ArticleList>>() {
                         }.getType();
                         return gson.fromJson(response.body().string(),type);
                     }

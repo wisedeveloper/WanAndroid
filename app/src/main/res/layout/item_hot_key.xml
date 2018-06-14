@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/tv_hot_key"
     android:layout_width="wrap_content"
     android:layout_height="30dp"
     android:layout_margin="5dp"
-    android:background="@drawable/bg_round_frame_gray"
+    android:background="@drawable/selector_flowlayout_bg"
     android:gravity="center"
     android:paddingLeft="20dp"
     android:paddingRight="20dp"
