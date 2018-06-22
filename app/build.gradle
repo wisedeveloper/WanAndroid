@@ -37,7 +37,7 @@ dependencies {
 
     implementation 'com.github.bumptech.glide:glide:3.7.0'
     implementation 'com.google.code.gson:gson:2.8.0'
-    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
+        implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
     //轮播图库
     implementation 'cn.bingoogolapple:bga-banner:2.2.4@aar'
     implementation 'com.jakewharton:butterknife:8.8.1'

@@ -127,7 +127,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter,LoginView> implem
         if (userBeanResponseData.getErrorCode() != 0) {
             Toast(userBeanResponseData.getErrorMsg());
         }else {
-            Toast(userBeanResponseData.getData().toString());
+            Toast("注册成功!");
+            mPresenter.login();
         }
     }
 
