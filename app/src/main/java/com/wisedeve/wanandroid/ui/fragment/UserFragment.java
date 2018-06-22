@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.wisedeve.wanandroid.R;
 import com.wisedeve.wanandroid.api.ServiceApi;
+import com.wisedeve.wanandroid.ui.activity.AboutActivity;
 import com.wisedeve.wanandroid.ui.activity.CollectActivity;
 import com.wisedeve.wanandroid.ui.activity.LoginActivity;
 import com.wisedeve.wanandroid.ui.base.BaseFragment;
@@ -69,6 +70,7 @@ public class UserFragment extends BaseFragment {
                 CollectActivity.startAction(getActivity());
                 break;
             case R.id.btn_about:
+                AboutActivity.startAction(getActivity());
                 break;
             case R.id.btn_login:
                 if (SPUtils.getBoolean(getContext(), ServiceApi.IS_LOGIN_KEY,false)) {
