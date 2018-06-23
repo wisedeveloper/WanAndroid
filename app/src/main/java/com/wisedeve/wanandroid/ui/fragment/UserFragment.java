@@ -15,6 +15,7 @@ import com.wisedeve.wanandroid.ui.activity.LoginActivity;
 import com.wisedeve.wanandroid.ui.base.BaseFragment;
 import com.wisedeve.wanandroid.ui.base.BasePresenter;
 import com.wisedeve.wanandroid.util.SPUtils;
+import com.wisedeve.wanandroid.util.T;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -67,6 +68,11 @@ public class UserFragment extends BaseFragment {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_collect:
+                if (!SPUtils.getBoolean(getContext(), ServiceApi.IS_LOGIN_KEY,false)) {
+                    T.showShort(getContext(),"请先登录");
+                    LoginActivity.startAction(getContext());
+                    return;
+                }
                 CollectActivity.startAction(getActivity());
                 break;
             case R.id.btn_about:
