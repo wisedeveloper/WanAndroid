@@ -9,7 +9,7 @@
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/header_bg"
         app:tabIndicatorColor="@color/TabIndicatorColor"
         app:tabSelectedTextColor="@color/TabSelectColor"
         app:tabTextColor="@color/TabTextColor" >
@@ -29,7 +29,7 @@
         android:padding="10dp"
         zhy:max_select="1"
         android:layout_below="@id/tab_layout"
-        android:background="#bb000000">
+        android:background="@color/tag_flow_bg">
 
     </com.zhy.view.flowlayout.TagFlowLayout>
 

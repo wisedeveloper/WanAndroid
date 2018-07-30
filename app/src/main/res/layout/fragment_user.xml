@@ -14,7 +14,7 @@
         android:orientation="vertical"
         android:gravity="center_horizontal"
         android:paddingTop="100dp"
-        android:background="@color/app_blue">
+        android:background="@color/header_bg">
         <com.wisedeve.wanandroid.widget.RoundImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
@@ -31,20 +31,26 @@
     <Button
         android:id="@+id/btn_collect"
         android:layout_width="300dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:layout_height="wrap_content"
         android:text="@string/my_collect"/>
     <Button
         android:id="@+id/btn_about"
         android:layout_width="300dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:layout_height="wrap_content"
         android:text="@string/about"/>
     <Button
         android:id="@+id/btn_login"
         android:layout_width="300dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:layout_height="wrap_content"
         android:text="@string/click_login"/>
+    <Button
+        android:id="@+id/btn_night_mode"
+        android:layout_width="300dp"
+        android:layout_marginTop="40dp"
+        android:layout_height="wrap_content"
+        android:text="@string/night_mode"/>
 
 </LinearLayout>

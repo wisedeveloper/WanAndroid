@@ -1,6 +1,8 @@
 package com.wisedeve.wanandroid.ui.fragment;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatDelegate;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +40,9 @@ public class UserFragment extends BaseFragment {
     Button btnAbout;
     @BindView(R.id.btn_login)
     Button btnLogin;
+    @BindView(R.id.btn_night_mode)
+    Button btnNightMode;
+    private int nightMode;
 
     public static UserFragment newInstance(){
         return new UserFragment();
@@ -55,6 +60,12 @@ public class UserFragment extends BaseFragment {
 
     @Override
     public void initView(View rootView) {
+        nightMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+        if (nightMode == Configuration.UI_MODE_NIGHT_YES) {
+            btnNightMode.setText(R.string.night_mode);
+        }else if (nightMode == Configuration.UI_MODE_NIGHT_NO) {
+            btnNightMode.setText(R.string.day_mode);
+        }
         if (SPUtils.getBoolean(getContext(), ServiceApi.IS_LOGIN_KEY,false)) {
             btnLogin.setText(R.string.exit_login);
             tvUsername.setText(SPUtils.getString(getContext(),ServiceApi.USERNAME_KEY,""));
@@ -64,7 +75,7 @@ public class UserFragment extends BaseFragment {
         }
     }
 
-    @OnClick({R.id.btn_collect, R.id.btn_about, R.id.btn_login})
+    @OnClick({R.id.btn_collect, R.id.btn_about, R.id.btn_login, R.id.btn_night_mode})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_collect:
@@ -86,6 +97,16 @@ public class UserFragment extends BaseFragment {
                 }else {
                     LoginActivity.startAction(getActivity());
                 }
+                break;
+            case R.id.btn_night_mode:
+                if(nightMode == Configuration.UI_MODE_NIGHT_YES) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    btnNightMode.setText(R.string.day_mode);
+                } else if(nightMode == Configuration.UI_MODE_NIGHT_NO) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    btnNightMode.setText(R.string.night_mode);
+                }
+                getActivity().recreate();
                 break;
         }
     }

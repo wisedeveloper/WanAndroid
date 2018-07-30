@@ -2,7 +2,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="@dimen/header_height"
-    android:background="@color/app_blue"
+    android:background="@color/header_bg"
     android:gravity="center_vertical">
     <com.wisedeve.wanandroid.widget.IconFontTextView
         android:id="@+id/icon_return"
@@ -31,7 +31,7 @@
         android:gravity="center_vertical"
         android:layout_centerVertical="true"
         android:visibility="gone"
-        android:background="@drawable/bg_round_frame_gray">
+        android:background="@drawable/bg_round_frame_normal">
         <EditText
             android:id="@+id/et_search"
             android:layout_width="match_parent"
@@ -41,6 +41,7 @@
             android:singleLine="true"
             android:imeOptions="actionSearch"
             android:textSize="@dimen/text_normal_size"
+            android:textColor="@color/text0"
             android:background="@color/transparent"
             android:hint="@string/hint_search"/>
         <com.wisedeve.wanandroid.widget.IconFontTextView
